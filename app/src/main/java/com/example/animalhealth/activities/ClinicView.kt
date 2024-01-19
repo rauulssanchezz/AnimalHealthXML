@@ -1,14 +1,17 @@
 package com.example.animalhealth.activities
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.animalhealth.R
+import com.example.animalhealth.utilities.Animation
 import com.example.animalhealth.utilities.Clinic
 import com.example.animalhealth.utilities.ClinicAdaptor
 import com.example.animalhealth.utilities.Utilities
@@ -19,11 +22,13 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.getValue
+import com.google.firebase.storage.FirebaseStorage
 
 class ClinicView : AppCompatActivity() {
     private lateinit var db_ref:DatabaseReference
     private lateinit var clinic:Clinic
-    private lateinit var adaptor: ClinicAdaptor
+    private lateinit var delete:ImageView
+    private lateinit var edit:ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +40,8 @@ class ClinicView : AppCompatActivity() {
         var address=findViewById<TextView>(R.id.clinicAddress)
         var rate=findViewById<RatingBar>(R.id.clinicRate)
         var photo=findViewById<ImageView>(R.id.clinicImage)
+        delete=findViewById(R.id.delete_item)
+        edit=findViewById(R.id.edit_item)
 
         var context:Context=this
 
@@ -66,5 +73,25 @@ class ClinicView : AppCompatActivity() {
                 }
 
             })
+
+        delete.setOnClickListener {
+            val db_ref = FirebaseDatabase.getInstance().getReference()
+            val sto_ref = FirebaseStorage.getInstance().getReference()
+            Animation.animation(it, 0.95f, 1.0f, 100)
+
+            delete.postDelayed({
+                sto_ref.child("AnimalHealth").child("clinics").child("photos").child(clinic.id!!).delete()
+                db_ref.child("AnimalHealth").child("clinics").child(clinic.id!!).removeValue()
+
+                Toast.makeText(context,"Clinica borrada con exito", Toast.LENGTH_SHORT).show()},100)
+        }
+
+        edit.setOnClickListener {
+            Animation.animation(it, 0.95f, 1.0f, 100)
+            var newIntent= Intent(context, EditClinic::class.java)
+            newIntent.putExtra("clinic",clinic)
+            edit.postDelayed({context.startActivity(newIntent)},100)
+
+        }
     }
 }
