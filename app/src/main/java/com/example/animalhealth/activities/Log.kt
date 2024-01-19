@@ -1,4 +1,4 @@
-package com.example.animalhealth
+package com.example.animalhealth.activities
 import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
@@ -7,6 +7,8 @@ import android.widget.TextView
 import android.widget.Toast
 import android.widget.Toast.makeText
 import androidx.appcompat.app.AppCompatActivity
+import com.example.animalhealth.utilities.Animation
+import com.example.animalhealth.R
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
@@ -35,7 +37,7 @@ class Log : AppCompatActivity() {
         //checking if the user has already been registered
         //&& user.isEmailVerified hay que añadirlo al if aunque funcione correctamente el enlace
         if (user != null ) {
-            newintent=Intent(this,ClinicList::class.java)
+            newintent=Intent(this, ClinicList::class.java)
             startActivity(newintent)
         }else{
             makeText(this,"Algo no ha salido como se esperaba",Toast.LENGTH_SHORT)
@@ -50,7 +52,7 @@ class Log : AppCompatActivity() {
             Animation.animation(register, 0.98f, 1.0f, 100)
             register.setTextColor(getColor(R.color.softblack))
             register.postDelayed({ register.setTextColor(getColor(R.color.black)) }, 300)
-            newintent=Intent(this,Register::class.java)
+            newintent=Intent(this, Register::class.java)
             register.postDelayed({startActivity(newintent)},320)
 
         }
@@ -59,7 +61,7 @@ class Log : AppCompatActivity() {
             Animation.animation(forgotpass, 0.98f, 1.0f, 100)
             forgotpass.setTextColor(getColor(R.color.softblack))
             forgotpass.postDelayed({ register.setTextColor(getColor(R.color.black)) }, 300)
-            newintent=Intent(this,ForgotPass::class.java)
+            newintent=Intent(this, ForgotPass::class.java)
             register.postDelayed({startActivity(newintent)},320)
         }
 

@@ -1,4 +1,4 @@
-package com.example.animalhealth
+package com.example.animalhealth.utilities
 import android.content.Context
 import android.net.Uri
 import android.widget.Toast
@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
+import com.example.animalhealth.R
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -37,7 +38,7 @@ class Utilities {
             return list
         }
 
-        fun writeClinic(db_ref:DatabaseReference,id:String,clinic:Clinic){
+        fun writeClinic(db_ref:DatabaseReference,id:String,clinic: Clinic){
 
             db_ref.child("AnimalHealth").child("clinics").child(id).setValue(clinic)
         }

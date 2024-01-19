@@ -1,4 +1,4 @@
-package com.example.animalhealth
+package com.example.animalhealth.utilities
 
 class State {
     companion object{

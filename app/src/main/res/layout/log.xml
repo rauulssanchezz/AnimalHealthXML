@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Log"
+    tools:context=".activities.Log"
     android:background="@color/blue">
 
     <androidx.cardview.widget.CardView
@@ -46,26 +46,6 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/panelhome"
-        app:layout_constraintTop_toBottomOf="@id/Linear1Home"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="@dimen/cardview_compat_inset_shadow"
-        android:backgroundTint="@color/white"
-        >
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="INICIO DE SESIÓN"
-            android:textSize="25sp"
-            android:textColor="@color/blue"
-            android:gravity="center"
-            />
-    </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
         android:id="@+id/panelhome"
         android:layout_width="300dp"

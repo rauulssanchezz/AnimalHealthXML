@@ -1,4 +1,4 @@
-package com.example.animalhealth
+package com.example.animalhealth.utilities
 
 import android.content.Context
 import android.content.Intent
@@ -13,6 +13,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.animalhealth.R
+import com.example.animalhealth.activities.ClinicView
+import com.example.animalhealth.activities.EditClinic
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 
@@ -23,7 +26,7 @@ class ClinicAdaptor(private val clinic_list:MutableList<Clinic>): RecyclerView.A
     private var filter_list=clinic_list
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClinicAdaptor.ClinicViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClinicViewHolder {
         val item_view= LayoutInflater.from(parent.context).inflate(R.layout.item_clinic,parent,false)
         context=parent.context
         return ClinicViewHolder(item_view)
@@ -50,6 +53,13 @@ class ClinicAdaptor(private val clinic_list:MutableList<Clinic>): RecyclerView.A
         holder.ratingBar.rating=actual_item.rate?:0f
         holder.date.text=actual_item.fecha
 
+        holder.itemView.setOnClickListener {
+            var newIntent=Intent(context,ClinicView::class.java)
+            Animation.animation(it,0.95f,1.0f,100)
+            newIntent.putExtra("id",actual_item.id)
+            it.postDelayed({context.startActivity(newIntent)},100)
+        }
+
         val URL:String? = when (actual_item.photo){
             ""->null
             else->actual_item.photo
@@ -58,7 +68,7 @@ class ClinicAdaptor(private val clinic_list:MutableList<Clinic>): RecyclerView.A
         Glide.with(context).load(URL).apply(Utilities.glideOptions(context)).transition(Utilities.transition).into(holder.photo)
         holder.edit.setOnClickListener {
             Animation.animation(it, 0.95f, 1.0f, 100)
-            var newIntent= Intent(context,EditClinic::class.java)
+            var newIntent= Intent(context, EditClinic::class.java)
             newIntent.putExtra("clinic",actual_item)
             holder.edit.postDelayed({context.startActivity(newIntent)},100)
 

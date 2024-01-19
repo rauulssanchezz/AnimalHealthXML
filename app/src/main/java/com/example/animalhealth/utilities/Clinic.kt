@@ -1,4 +1,4 @@
-package com.example.animalhealth
+package com.example.animalhealth.utilities
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

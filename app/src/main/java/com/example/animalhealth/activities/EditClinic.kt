@@ -1,4 +1,4 @@
-package com.example.animalhealth
+package com.example.animalhealth.activities
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +10,9 @@ import android.widget.RatingBar
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.bumptech.glide.Glide
+import com.example.animalhealth.utilities.Clinic
+import com.example.animalhealth.R
+import com.example.animalhealth.utilities.Utilities
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -100,7 +103,7 @@ class EditClinic : AppCompatActivity(), CoroutineScope {
                             Utilities.savePhoto(st_ref, pojo_clinic.id!!, url_photo!!)
                     }
 
-                    var clinic=Clinic(
+                    var clinic= Clinic(
                         pojo_clinic.id!!,
                         name.text.toString().trim().capitalize(),
                         "c/ "+address.text.toString().trim().capitalize(),
@@ -108,7 +111,7 @@ class EditClinic : AppCompatActivity(), CoroutineScope {
                         ratingBar.rating
                     )
 
-                    Utilities.writeClinic(db_ref,pojo_clinic.id!!,clinic)
+                    Utilities.writeClinic(db_ref, pojo_clinic.id!!, clinic)
 
                     Utilities.toastCourutine(
                         this_activity,

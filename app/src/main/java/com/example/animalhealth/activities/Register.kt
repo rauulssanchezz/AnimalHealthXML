@@ -1,4 +1,4 @@
-package com.example.animalhealth
+package com.example.animalhealth.activities
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -6,6 +6,8 @@ import android.widget.Toast
 import android.widget.Toast.makeText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
+import com.example.animalhealth.utilities.Animation
+import com.example.animalhealth.R
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 class Register : AppCompatActivity() {
@@ -49,7 +51,7 @@ class Register : AppCompatActivity() {
         }
 
         save.setOnClickListener {
-            Animation.animation(save,0.98f, 1.0f, 100)
+            Animation.animation(save, 0.98f, 1.0f, 100)
 
             if (userEdit.text.isNullOrBlank()) {
                 userEdit.setError("Este campo es obligatorio")
@@ -81,7 +83,7 @@ class Register : AppCompatActivity() {
                         val user = auth.currentUser
                         user?.sendEmailVerification()
                         makeText(this,"Se ha enviado un enlace de confirmación a su correo electrónico",Toast.LENGTH_LONG).show()
-                        var newIntent= Intent(this,Log::class.java)
+                        var newIntent= Intent(this, Log::class.java)
                         startActivity(newIntent)
 
                     }else{

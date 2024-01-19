@@ -1,4 +1,4 @@
-package com.example.animalhealth
+package com.example.animalhealth.activities
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -10,6 +10,9 @@ import android.widget.RatingBar
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import com.example.animalhealth.utilities.Clinic
+import com.example.animalhealth.R
+import com.example.animalhealth.utilities.Utilities
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.database.DatabaseReference
@@ -70,7 +73,7 @@ class CreateClinic : AppCompatActivity(), CoroutineScope {
         db_ref=FirebaseDatabase.getInstance().reference
         st_ref = FirebaseStorage.getInstance().reference
 
-        clinic_list=Utilities.getClinicLis(db_ref)
+        clinic_list= Utilities.getClinicLis(db_ref)
 
 
         add.setOnClickListener {
@@ -92,9 +95,9 @@ class CreateClinic : AppCompatActivity(), CoroutineScope {
 
 
                 launch {
-                    val url_photo_firebase= Utilities.savePhoto(st_ref,generated_id!!,url_photo!!)
+                    val url_photo_firebase= Utilities.savePhoto(st_ref, generated_id!!, url_photo!!)
 
-                    var clinic=Clinic(
+                    var clinic= Clinic(
                         generated_id,
                         name.text.toString().trim().capitalize(),
                         "c/ "+adress.text.toString().trim().capitalize(),
@@ -102,12 +105,16 @@ class CreateClinic : AppCompatActivity(), CoroutineScope {
                         rating,
                         date
                     )
-                    Utilities.writeClinic(db_ref,generated_id!!, clinic)
+                    Utilities.writeClinic(db_ref, generated_id!!, clinic)
 
 
-                    Utilities.toastCourutine(this_activity,applicationContext,"Clinica creada con exito")
+                    Utilities.toastCourutine(
+                        this_activity,
+                        applicationContext,
+                        "Clinica creada con exito"
+                    )
 
-                    val activity=Intent(applicationContext,ClinicList::class.java)
+                    val activity=Intent(applicationContext, ClinicList::class.java)
                     startActivity(activity)
 
                 }
@@ -115,7 +122,7 @@ class CreateClinic : AppCompatActivity(), CoroutineScope {
         }
 
         back.setOnClickListener {
-            val activity=Intent(applicationContext,ClinicList::class.java)
+            val activity=Intent(applicationContext, ClinicList::class.java)
             startActivity(activity)
         }
 

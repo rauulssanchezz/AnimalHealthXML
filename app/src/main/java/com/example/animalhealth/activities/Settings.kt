@@ -1,8 +1,10 @@
-package com.example.animalhealth
+package com.example.animalhealth.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import com.example.animalhealth.utilities.Animation
+import com.example.animalhealth.R
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 class Settings : AppCompatActivity() {
@@ -14,9 +16,9 @@ class Settings : AppCompatActivity() {
         var newintent:Intent
 
         logout.setOnClickListener{
-            Animation.animation(logout,0.98f,1.0f,150)
+            Animation.animation(logout, 0.98f, 1.0f, 150)
             Firebase.auth.signOut()
-            newintent=Intent(this,Log::class.java)
+            newintent=Intent(this, Log::class.java)
             logout.postDelayed({startActivity(newintent)},170)
         }
 

@@ -1,4 +1,4 @@
-package com.example.animalhealth
+package com.example.animalhealth.activities
 
 import android.Manifest
 import android.app.NotificationChannel
@@ -17,6 +17,11 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.animalhealth.utilities.Animation
+import com.example.animalhealth.utilities.Clinic
+import com.example.animalhealth.utilities.ClinicAdaptor
+import com.example.animalhealth.R
+import com.example.animalhealth.utilities.State
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
