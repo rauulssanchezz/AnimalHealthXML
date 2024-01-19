@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "670184649835",
+    "firebase_url": "https://animalhealth-f5d3e-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "animalhealth-f5d3e",
+    "storage_bucket": "animalhealth-f5d3e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:670184649835:android:68b6ef3c379f143278ad2e",
+        "android_client_info": {
+          "package_name": "com.example.animalhealth"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTLMPiY_f-hXObvsAkWd9lkLW5sAz_rgg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

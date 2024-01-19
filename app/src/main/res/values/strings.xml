@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Crud</string>
+    <string name="crear">CREAR</string>
+    <string name="volver">VOLVER</string>
+    <string name="introduce_nombre_de_la_cl_nica">Introduce nombre de la clínica</string>
+    <string name="introduce_la_direcci_n_de_cl_nica">Introduce la dirección de clínica</string>
+    <string name="ver">ver</string>
+</resources>
