@@ -3,6 +3,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -12,6 +13,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import com.bumptech.glide.Glide
 import com.example.animalhealth.utilities.Clinic
 import com.example.animalhealth.R
+import com.example.animalhealth.utilities.State
 import com.example.animalhealth.utilities.Utilities
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -103,12 +105,20 @@ class EditClinic : AppCompatActivity(), CoroutineScope {
                             Utilities.savePhoto(st_ref, pojo_clinic.id!!, url_photo!!)
                     }
 
+                    val androidId= Settings.Secure.getString(
+                        applicationContext.contentResolver,
+                        Settings.Secure.ANDROID_ID
+                    )
+
                     var clinic= Clinic(
                         pojo_clinic.id!!,
                         name.text.toString().trim().capitalize(),
                         "c/ "+address.text.toString().trim().capitalize(),
                         url_photo_firebase,
-                        ratingBar.rating
+                        ratingBar.rating,
+                        androidId,
+                        State.modificates
+
                     )
 
                     Utilities.writeClinic(db_ref, pojo_clinic.id!!, clinic)

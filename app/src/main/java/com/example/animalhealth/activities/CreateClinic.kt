@@ -23,6 +23,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import android.provider.Settings
+import com.example.animalhealth.utilities.State
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import kotlin.coroutines.CoroutineContext
@@ -44,6 +46,8 @@ class CreateClinic : AppCompatActivity(), CoroutineScope {
     private lateinit var clinic_list: MutableList<Clinic>
     private lateinit var job: Job
     private lateinit var date:String
+    private var state_not:Int=0
+    private var user_not:String=""
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -97,13 +101,20 @@ class CreateClinic : AppCompatActivity(), CoroutineScope {
                 launch {
                     val url_photo_firebase= Utilities.savePhoto(st_ref, generated_id!!, url_photo!!)
 
+                    val androidId= Settings.Secure.getString(
+                        applicationContext.contentResolver,
+                        Settings.Secure.ANDROID_ID
+                    )
+
                     var clinic= Clinic(
                         generated_id,
                         name.text.toString().trim().capitalize(),
                         "c/ "+adress.text.toString().trim().capitalize(),
                         url_photo_firebase,
                         rating,
-                        date
+                        date,
+                        State.create
+                        ,androidId
                     )
                     Utilities.writeClinic(db_ref, generated_id!!, clinic)
 

@@ -1,6 +1,7 @@
 package com.example.animalhealth.utilities
 import android.content.Context
 import android.net.Uri
+import android.provider.Settings
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
@@ -41,6 +42,7 @@ class Utilities {
         fun writeClinic(db_ref:DatabaseReference,id:String,clinic: Clinic){
 
             db_ref.child("AnimalHealth").child("clinics").child(id).setValue(clinic)
+
         }
 
     suspend fun savePhoto(sto_ref: StorageReference, id: String, image: Uri): String {

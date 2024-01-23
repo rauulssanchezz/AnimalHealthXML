@@ -2,6 +2,7 @@ package com.example.animalhealth.utilities
 
 import android.content.Context
 import android.content.Intent
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -77,6 +78,8 @@ class ClinicAdaptor(private val clinic_list:MutableList<Clinic>): RecyclerView.A
             val db_ref = FirebaseDatabase.getInstance().getReference()
             val sto_ref = FirebaseStorage.getInstance().getReference()
             Animation.animation(it, 0.95f, 1.0f, 100)
+
+            val androidId=Settings.Secure.getString(context.contentResolver,Settings.Secure.ANDROID_ID)
 
             holder.delete.postDelayed({filter_list.remove(actual_item)
                 sto_ref.child("AnimalHealth").child("clinics").child("photos").child(actual_item.id!!).delete()

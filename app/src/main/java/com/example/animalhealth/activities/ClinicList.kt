@@ -128,7 +128,7 @@ class ClinicList : AppCompatActivity() {
                 override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                     val pojo = snapshot.getValue(Clinic::class.java)
                     if (pojo!!.userNotifications.equals(androidId) && pojo.not_state!!.equals(
-                            State.create == State.notificated
+                            State.create
                         )
                     ) {
                         db_ref.child("AnimalHealth").child("clinics").child(pojo.id!!)
@@ -146,7 +146,7 @@ class ClinicList : AppCompatActivity() {
                 override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
                     val pojo = snapshot.getValue(Clinic::class.java)
                     if (pojo!!.userNotifications.equals(androidId) && pojo.not_state!!.equals(
-                            State.modificates == State.notificated
+                            State.modificates
                         )
                     ) {
                         db_ref.child("AnimalHealth").child("clinics").child(pojo.id!!)
@@ -164,7 +164,7 @@ class ClinicList : AppCompatActivity() {
 
                 override fun onChildRemoved(snapshot: DataSnapshot) {
                     val pojo = snapshot.getValue(Clinic::class.java)
-                    if (pojo!!.userNotifications.equals(androidId)
+                    if (!pojo!!.userNotifications.equals(androidId)
                     ) {
                         db_ref.child("AnimalHealth").child("clinics").child(pojo.id!!)
                             .child("not_state").setValue(State.notificated)
