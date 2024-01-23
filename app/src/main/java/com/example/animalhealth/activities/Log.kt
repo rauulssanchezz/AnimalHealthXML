@@ -18,6 +18,9 @@ class Log : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.log)
 
+        //raulestudiosdam@gmail.com
+        //wardenk13
+
         FirebaseApp.initializeApp(this)
 
         var auth = FirebaseAuth.getInstance()
