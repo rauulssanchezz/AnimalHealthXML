@@ -77,7 +77,6 @@ class Register : AppCompatActivity() {
 
             if (userOk && passwordOk && confirmPasswordOk) {
 
-                // Crear usuario en Firebase (puedes adaptar esto según tu lógica)
                 auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener{
                     if (it.isSuccessful){
                         val user = auth.currentUser

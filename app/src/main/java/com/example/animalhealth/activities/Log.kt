@@ -25,7 +25,6 @@ class Log : AppCompatActivity() {
 
         var auth = FirebaseAuth.getInstance()
 
-        //required variables
         var email:String
         var password:String
         var newintent:Intent
@@ -34,11 +33,8 @@ class Log : AppCompatActivity() {
         var userEdit=findViewById<TextInputEditText>(R.id.user)
         var passwordEdit=findViewById<TextInputEditText>(R.id.password)
         var log = findViewById<Button>(R.id.log)
-        //Animation variable used to create animations of the Animation class
         var user=auth.currentUser
 
-        //checking if the user has already been registered
-        //&& user.isEmailVerified hay que añadirlo al if aunque funcione correctamente el enlace
         if (user != null ) {
             newintent=Intent(this, ClinicList::class.java)
             startActivity(newintent)
@@ -46,8 +42,6 @@ class Log : AppCompatActivity() {
             makeText(this,"Algo no ha salido como se esperaba",Toast.LENGTH_SHORT)
         }
 
-
-        //"link" to start the registration
         register.setPaintFlags(register.getPaintFlags() or Paint.UNDERLINE_TEXT_FLAG)
         forgotpass.setPaintFlags(forgotpass.getPaintFlags() or Paint.UNDERLINE_TEXT_FLAG)
 
@@ -68,7 +62,6 @@ class Log : AppCompatActivity() {
             register.postDelayed({startActivity(newintent)},320)
         }
 
-        //"link" to log in
         log.setOnClickListener() {
         Animation.animation(log, 0.98f, 1.0f, 100)
             if (!userEdit.text.isNullOrBlank() && !passwordEdit.text.isNullOrBlank()) {
@@ -78,16 +71,13 @@ class Log : AppCompatActivity() {
                 auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
                     user=auth.currentUser
                     if (task.isSuccessful) {
-                        // Inicio de sesión exitoso, actualiza la interfaz de usuario
                         if (user!!.isEmailVerified) {
                             newintent = Intent(this, ClinicList::class.java)
                             startActivity(newintent)
                         }else{
                             makeText(this, "Este usuario no se encuentra verificado", Toast.LENGTH_SHORT).show()
                         }
-                        // Puedes redirigir a la pantalla de inicio o hacer otras acciones necesarias
                     } else {
-                        // Si el inicio de sesión falla, muestra un mensaje al usuario
                         makeText(this, "El usuario o la contraseña son incorrectas", Toast.LENGTH_SHORT).show()
                     }
                 }
