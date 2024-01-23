@@ -127,7 +127,7 @@ class ClinicList : AppCompatActivity() {
             .addChildEventListener(object : ChildEventListener {
                 override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                     val pojo = snapshot.getValue(Clinic::class.java)
-                    if (pojo!!.userNotifications.equals(androidId) && pojo.not_state!!.equals(
+                    if (!pojo!!.userNotifications.equals(androidId) && pojo.not_state!!.equals(
                             State.create
                         )
                     ) {
@@ -145,7 +145,7 @@ class ClinicList : AppCompatActivity() {
 
                 override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
                     val pojo = snapshot.getValue(Clinic::class.java)
-                    if (pojo!!.userNotifications.equals(androidId) && pojo.not_state!!.equals(
+                    if (!pojo!!.userNotifications.equals(androidId) && pojo.not_state!!.equals(
                             State.modificates
                         )
                     ) {
