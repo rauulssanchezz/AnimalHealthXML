@@ -38,8 +38,6 @@ class Log : AppCompatActivity() {
         if (user != null ) {
             newintent=Intent(this, ClinicList::class.java)
             startActivity(newintent)
-        }else{
-            makeText(this,"Algo no ha salido como se esperaba",Toast.LENGTH_SHORT)
         }
 
         register.setPaintFlags(register.getPaintFlags() or Paint.UNDERLINE_TEXT_FLAG)
